@@ -1,31 +1,22 @@
-def bfs(graph, start, goal):
-    queue = [start]
-    visited = []
-    while queue:
-        node = queue.pop(0)
-        if node not in visited:
-            visited.append(node)
-
-            if node == goal:
-                print("Goal found:", node)
-                break
-
-            for neighbor in graph.get(node, []):
-                if neighbor not in visited:
-                    queue.append(neighbor)
-
-    print("BFS Traversal:", visited)
-# Input
-graph = {}
-n = int(input("Enter number of nodes: "))
-
-for _ in range(n):
-    node = input("Enter node: ")
-    neighbors = input(f"Enter neighbors of {node} (space-separated): ").split()
-    graph[node] = neighbors
-
-start = input("Enter start node: ")
-goal = input("Enter goal node: ")
-
-# Run BFS
-bfs(graph, start, goal)
+graph = {
+  '5' : ['3','7'],
+  '3' : ['2', '4'],
+  '7' : ['8'],
+  '2' : [],
+  '4' : ['8'],
+  '8' : []
+}
+visited = [] 
+queue = []   
+def bfs(visited, graph, node): 
+  visited.append(node)
+  queue.append(node)
+  while queue:         
+    m = queue.pop(0) 
+    print (m, end = " ") 
+    for neighbour in graph[m]:
+      if neighbour not in visited:
+        visited.append(neighbour)
+        queue.append(neighbour)
+print("Following is the Breadth-First Search")
+bfs(visited, graph, '5')    
